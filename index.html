@@ -3,57 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Opencomp – Etusivu</title>
+  <title>Opencomp</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
   <header>
     <div class="logo">OPENCOMP</div>
+    <div class="version">v1.00</div>
     <div class="header-inner">
       <nav>
         <ul>
-          <li><a href="index.html" class="active">Etusivu</a></li>
-          <li><a href="tietoa-minusta.html">Tietoa minusta</a></li>
-          <li><a href="artikkelit.html">Artikkelit</a></li>
+          <li><a href="#home" data-page="home">Etusivu</a></li>
+          <li><a href="#about" data-page="about">Tietoa minusta</a></li>
+          <li><a href="#articles" data-page="articles">Artikkelit</a></li>
         </ul>
       </nav>
       <ul class="lang-switch">
-        <li><a href="#" class="active">FI</a></li>
-        <li><a href="en/index.html">EN</a></li>
+        <li><a href="#" data-lang="fi">FI</a></li>
+        <li><a href="#" data-lang="en">EN</a></li>
       </ul>
     </div>
   </header>
 
-  <main>
-    <div class="hero">
-      <h1>Tervetuloa Opencompin maailmaan</h1>
-      <p>Innovatiivisia ratkaisuja ja ajankohtaista sisältöä teknologiasta, liiketoimesta ja tulevaisuudesta.</p>
-    </div>
-
-    <section>
-      <h2>Mikä on Opencomp?</h2>
-      <div class="card">
-        <p>Opencomp on alusta, jossa jaamme tietoa, ajatuksia ja kokemuksia teknologiamaailmasta. Löydä tuoreimmat artikkelimme, lue tarinamme ja ota yhteyttä.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Ajankohtaista</h2>
-      <div class="card">
-        <h3>Tekologian trendit vuonna 2026</h3>
-        <p class="date">24. huhtikuuta 2026</p>
-        <p>Tutustumme vuoden 2026 merkittävimpiin teknologiatrendeihin ja niiden vaikutuksiin liiketoimintaan.</p>
-      </div>
-      <div class="card">
-        <h3>Avointa lähdekoodia liiketoiminnassa</h3>
-        <p class="date">20. huhtikuuta 2026</p>
-        <p>Kuinka avoimen lähdekoodin projektit muuttavat yritysten tapaa kehittää ohjelmistoja.</p>
-      </div>
-    </section>
+  <main id="content">
   </main>
 
   <footer>
-    <p>&copy; 2026 Opencomp. Kaikki oikeudet pidätetään.</p>
+    <p>&copy; 2026 Opencomp. All rights reserved.</p>
   </footer>
+
+  <script>
+    const state = {
+      lang: 'fi',
+      page: 'home'
+    };
+
+    const pageLabels = {
+      fi: { home: 'Etusivu', about: 'Tietoa minusta', articles: 'Artikkelit' },
+      en: { home: 'Home', about: 'About Me', articles: 'Articles' }
+    };
+
+    const footerText = {
+      fi: '&copy; 2026 Opencomp. Kaikki oikeudet pidätetään.',
+      en: '&copy; 2026 Opencomp. All rights reserved.'
+    };
+
+    const contentEl = document.getElementById('content');
+    const navLinks = document.querySelectorAll('nav a[data-page]');
+    const langLinks = document.querySelectorAll('.lang-switch a[data-lang]');
+
+    function updateNav() {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.page === state.page);
+      });
+      langLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.lang === state.lang);
+      });
+    }
+
+    function updateLabels() {
+      const labels = pageLabels[state.lang];
+      navLinks.forEach(link => {
+        link.textContent = labels[link.dataset.page];
+      });
+      document.querySelector('footer p').innerHTML = footerText[state.lang];
+      document.documentElement.lang = state.lang;
+    }
+
+    async function loadPage(page) {
+      state.page = page;
+      updateNav();
+      updateLabels();
+
+      contentEl.innerHTML = '<p style="text-align:center;padding:3rem;">Loading...</p>';
+
+      try {
+        const res = await fetch(`src/${state.lang}/${page}.md`);
+        if (!res.ok) throw new Error('Failed to load content');
+        const md = await res.text();
+
+        const renderer = new marked.Renderer();
+        let heroOpen = false;
+
+        renderer.heading = function(text, level) {
+          if (level === 1) {
+            heroOpen = true;
+            return '<div class="hero"><h1>' + text + '</h1>';
+          }
+          if (heroOpen) { heroOpen = false; return '</div><h' + level + '>' + text + '</h' + level + '>'; }
+          return '<h' + level + '>' + text + '</h' + level + '>';
+        };
+
+        renderer.paragraph = function(text) {
+          if (heroOpen) { heroOpen = false; return '<p>' + text + '</p></div>'; }
+          return '<p>' + text + '</p>';
+        };
+
+        renderer.blockquote = function(text) {
+          if (heroOpen) { heroOpen = false; return '</div><div class="card">' + text + '</div>'; }
+          return '<div class="card">' + text + '</div>';
+        };
+
+        contentEl.innerHTML = marked.parse(md, { renderer });
+        document.title = `Opencomp – ${pageLabels[state.lang][page]}`;
+      } catch (e) {
+        contentEl.innerHTML = `<p style="text-align:center;padding:3rem;">Error loading page: ${e.message}</p>`;
+      }
+
+      history.replaceState(null, '', `#${page}`);
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        loadPage(link.dataset.page);
+      });
+    });
+
+    langLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        state.lang = link.dataset.lang;
+        loadPage(state.page);
+      });
+    });
+
+    window.addEventListener('hashchange', () => {
+      const hash = location.hash.slice(1);
+      if (hash && ['home', 'about', 'articles'].includes(hash)) {
+        loadPage(hash);
+      }
+    });
+
+    const initialHash = location.hash.slice(1);
+    if (initialHash && ['home', 'about', 'articles'].includes(initialHash)) {
+      loadPage(initialHash);
+    } else {
+      loadPage('home');
+    }
+  </script>
 </body>
 </html>

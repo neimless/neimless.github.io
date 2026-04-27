@@ -88,6 +88,25 @@ main {
   min-height: 70vh;
 }
 
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a2e;
+  border-bottom: 3px solid #e94560;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+h3 {
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+}
+
 .hero {
   text-align: center;
   padding: 5rem 2rem;

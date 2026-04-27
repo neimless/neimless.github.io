@@ -1,14 +1,21 @@
+<div class="hero">
 # About Me
 
-> ### Hi, I'm the founder of Opencomp!
-> I'm a passionate technology professional who believes in the power of openness and sharing. This site is a place where I share knowledge, experiences, and ideas from my field.
->
-> I work in software development and technology, and I'm especially interested in the open source ecosystem, web technologies, and sustainable development.
+Passionate technology professional who believes in the power of openness and sharing.
+</div>
 
-## Skills
+## Background
 
-> Software development, web technologies, project management, technical writing, and community work are my areas of expertise. I believe in continuous learning and embracing new challenges.
+I work in software development and technology, and I'm especially interested in the open source ecosystem, web technologies, and sustainable development.
 
-## Why Opencomp?
+<div class="card">
+### Skills
 
-> I created Opencomp to build a platform where quality content is easily accessible to everyone. My goal is to produce content that is useful, thought-provoking, and easy to understand.
+Software development, web technologies, project management, technical writing, and community work.
+</div>
+
+<div class="card">
+### Why Opencomp?
+
+I created Opencomp to build a platform where quality content is easily accessible to everyone. My goal is to produce content that is useful, thought-provoking, and easy to understand.
+</div>

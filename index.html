@@ -83,29 +83,7 @@
         if (!res.ok) throw new Error('Failed to load content');
         const md = await res.text();
 
-        const renderer = new marked.Renderer();
-        let heroOpen = false;
-
-        renderer.heading = function(text, level) {
-          if (level === 1) {
-            heroOpen = true;
-            return '<div class="hero"><h1>' + text + '</h1>';
-          }
-          if (heroOpen) { heroOpen = false; return '</div><h' + level + '>' + text + '</h' + level + '>'; }
-          return '<h' + level + '>' + text + '</h' + level + '>';
-        };
-
-        renderer.paragraph = function(text) {
-          if (heroOpen) { heroOpen = false; return '<p>' + text + '</p></div>'; }
-          return '<p>' + text + '</p>';
-        };
-
-        renderer.blockquote = function(text) {
-          if (heroOpen) { heroOpen = false; return '</div><div class="card">' + text + '</div>'; }
-          return '<div class="card">' + text + '</div>';
-        };
-
-        contentEl.innerHTML = await marked.parse(md, { renderer });
+        contentEl.innerHTML = await marked.parse(md);
         document.title = `Opencomp – ${pageLabels[state.lang][page]}`;
       } catch (e) {
         contentEl.innerHTML = `<p style="text-align:center;padding:3rem;">Error loading page: ${e.message}</p>`;

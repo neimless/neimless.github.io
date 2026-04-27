@@ -1,17 +1,37 @@
+<div class="hero">
 # Articles
 
-> ### Technology Trends in 2026
-> *April 24, 2026*
-> The world of technology is constantly changing. In this article we go through the most significant trends of 2026, such as the expanding use of artificial intelligence, advances in quantum computing, and the rise of sustainable technology.
+Latest articles and insights on technology and development.
+</div>
 
-> ### Open Source in Business
-> *April 20, 2026*
-> Open source projects are no longer just for hobbyists. Companies around the world are leveraging the benefits of open source to increase innovation and cost-effectiveness.
+<div class="card">
+### Technology Trends in 2026
 
-> ### Best Practices in Web Development
-> *April 15, 2026*
-> Modern web development requires increasing attention to performance, accessibility, and user experience. In this article I share my best practices.
+*April 24, 2026*
 
-> ### Project Communities and Their Importance
-> *April 10, 2026*
-> Behind successful technology projects is often a strong community. We explore how communities are built and maintained.
+The world of technology is constantly changing. In this article we go through the most significant trends of 2026, such as the expanding use of artificial intelligence, advances in quantum computing, and the rise of sustainable technology.
+</div>
+
+<div class="card">
+### Open Source in Business
+
+*April 20, 2026*
+
+Open source projects are no longer just for hobbyists. Companies around the world are leveraging the benefits of open source to increase innovation and cost-effectiveness.
+</div>
+
+<div class="card">
+### Best Practices in Web Development
+
+*April 15, 2026*
+
+Modern web development requires increasing attention to performance, accessibility, and user experience. In this article I share my best practices.
+</div>
+
+<div class="card">
+### Project Communities and Their Importance
+
+*April 10, 2026*
+
+Behind successful technology projects is often a strong community. We explore how communities are built and maintained.
+</div>

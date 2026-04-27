@@ -105,7 +105,8 @@
           return '<div class="card">' + text + '</div>';
         };
 
-        contentEl.innerHTML = marked.parseToString(md, { renderer });
+        const result = marked.parse(md, { renderer });
+        contentEl.innerHTML = typeof result === 'string' ? result : marked.parser(result);
         document.title = `Opencomp – ${pageLabels[state.lang][page]}`;
       } catch (e) {
         contentEl.innerHTML = `<p style="text-align:center;padding:3rem;">Error loading page: ${e.message}</p>`;

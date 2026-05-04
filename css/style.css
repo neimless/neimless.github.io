@@ -122,65 +122,202 @@ nav {
   color: var(--accent);
 }
 
-main {
-  flex: 1;
+.cta-button.small {
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+/* Timeline Styles */
+.timeline-section {
+  position: relative;
   padding: var(--stack-xl) 0;
 }
 
-.hero {
-  max-width: 800px;
-  margin: 0 auto;
+.timeline-header {
   text-align: center;
+  margin-bottom: var(--stack-xl);
 }
 
-h1 {
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+.timeline-header h1 {
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: var(--stack-sm);
+}
+
+.timeline-header h2 {
+  font-size: 32px;
   margin-bottom: var(--stack-md);
+}
+
+.timeline-container {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 4px,
+    var(--outline-variant) 4px,
+    var(--outline-variant) 8px
+  );
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--stack-xl);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-card {
+  width: 45%;
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--rounded-lg);
+  padding: var(--stack-md);
+  position: relative;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: var(--background);
+  border: 2px solid var(--accent);
+  border-radius: var(--rounded-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  color: var(--accent);
+  font-size: 18px;
+}
+
+.timeline-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--stack-sm);
+}
+
+.timeline-card h3 {
+  font-size: 18px;
+  font-weight: 600;
   color: var(--on-surface);
 }
 
-p.body-lg {
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--on-surface-variant);
-  max-width: 600px;
-  margin: 0 auto var(--stack-lg);
-}
-
-.cta-button {
-  display: inline-block;
-  background-color: var(--accent);
-  color: var(--on-tertiary);
-  padding: 12px 24px;
-  border-radius: var(--rounded);
-  font-weight: 600;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-.cta-button:hover {
-  opacity: 0.9;
-}
-
-.label-sm {
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.timeline-card .company {
   color: var(--accent);
+  font-weight: 600;
   margin-bottom: var(--stack-sm);
   display: block;
 }
 
-footer {
-  padding: var(--stack-lg) 0;
-  border-top: 1px solid var(--outline-variant);
+.timeline-card .role {
+  font-weight: 500;
+  margin-bottom: var(--stack-sm);
+  display: block;
+}
+
+.timeline-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.timeline-card ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 4px;
+  color: var(--on-surface-variant);
+  font-size: 14px;
+}
+
+.timeline-card ul li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+/* Footer CTA */
+.footer-cta {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--rounded-lg);
+  padding: var(--stack-lg);
   text-align: center;
+  margin: var(--stack-xl) 0;
+}
+
+.footer-cta h3 {
+  font-size: 24px;
+  margin-bottom: var(--stack-sm);
+}
+
+.footer-cta p {
+  color: var(--on-surface-variant);
+  margin-bottom: var(--stack-lg);
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: var(--stack-md);
+}
+
+.btn-outline {
+  display: inline-block;
+  border: 1px solid var(--outline);
+  color: var(--on-surface);
+  padding: 12px 24px;
+  border-radius: var(--rounded);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: var(--surface-bright);
+}
+
+@media (max-width: 768px) {
+  .timeline-container::before {
+    left: 20px;
+  }
+  
+  .timeline-item, .timeline-item:nth-child(even) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 50px;
+  }
+  
+  .timeline-card {
+    width: 100%;
+  }
+  
+  .timeline-icon {
+    left: 20px;
+  }
 }
 
 .footer-text {

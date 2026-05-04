@@ -183,6 +183,10 @@ nav {
   align-items: center;
 }
 
+.timeline-item.overlap {
+  margin-bottom: var(--stack-md); /* Smaller gap for overlapping events */
+}
+
 .timeline-item:nth-child(even) {
   justify-content: flex-end; /* Card on right for even items */
 }

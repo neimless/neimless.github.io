@@ -179,21 +179,26 @@ nav {
   margin-bottom: var(--stack-xl);
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Card on left by default */
   align-items: center;
 }
 
 .timeline-item:nth-child(even) {
-  flex-direction: row-reverse;
+  justify-content: flex-end; /* Card on right for even items */
 }
 
 .timeline-card {
-  width: 45%;
+  width: 44%; /* Slightly less than 50% to ensure a gap for the icon */
   background: var(--surface-container);
   border: 1px solid var(--outline-variant);
   border-radius: var(--rounded-lg);
   padding: var(--stack-md);
   position: relative;
+  z-index: 1;
+}
+
+.timeline-item:nth-child(even) .timeline-card {
+  /* No specific styles needed, flex-end handles it */
 }
 
 .timeline-icon {

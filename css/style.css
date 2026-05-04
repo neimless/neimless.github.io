@@ -92,11 +92,14 @@ nav {
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 24px;
-  letter-spacing: -0.02em;
-  color: var(--on-surface);
+  display: flex;
+  align-items: center;
   text-decoration: none;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
 }
 
 main {
@@ -108,12 +111,6 @@ main {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
-}
-
-.hero img {
-  max-width: 180px;
-  height: auto;
-  margin-bottom: var(--stack-lg);
 }
 
 h1 {

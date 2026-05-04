@@ -1,130 +1,59 @@
 <!DOCTYPE html>
-<html lang="fi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Opencomp</title>
-  <link rel="stylesheet" href="css/style.css?v=2">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opencomp</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            background-color: #fdfdfd;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+        }
+        img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-weight: 300;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #000;
+        }
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #999;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">OPENCOMP</div>
-    <div class="version">v1.00</div>
-    <div class="header-inner">
-      <nav>
-        <ul>
-          <li><a href="#home" data-page="home">Etusivu</a></li>
-          <li><a href="#about" data-page="about">Tietoa minusta</a></li>
-          <li><a href="#articles" data-page="articles">Artikkelit</a></li>
-        </ul>
-      </nav>
-      <ul class="lang-switch">
-        <li><a href="#" data-lang="fi">FI</a></li>
-        <li><a href="#" data-lang="en">EN</a></li>
-      </ul>
+    <div class="container">
+        <img src="images/cropped-opencomp_logo.png" alt="Opencomp Logo">
+        <h1>Opencomp</h1>
+        <p>Providing expert solutions for modern challenges. Stay tuned for our new digital experience.</p>
+        <div class="footer">
+            &copy; 2026 Opencomp. All rights reserved.
+        </div>
     </div>
-  </header>
-
-  <main id="content">
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Opencomp. All rights reserved.</p>
-  </footer>
-
-  <script>
-    marked.setOptions({
-      gfm: true,
-      breaks: true
-    });
-
-    const state = {
-      lang: 'fi',
-      page: 'home'
-    };
-
-    const pageLabels = {
-      fi: { home: 'Etusivu', about: 'Tietoa minusta', articles: 'Artikkelit' },
-      en: { home: 'Home', about: 'About Me', articles: 'Articles' }
-    };
-
-    const footerText = {
-      fi: '&copy; 2026 Opencomp. Kaikki oikeudet pidätetään.',
-      en: '&copy; 2026 Opencomp. All rights reserved.'
-    };
-
-    const contentEl = document.getElementById('content');
-    const navLinks = document.querySelectorAll('nav a[data-page]');
-    const langLinks = document.querySelectorAll('.lang-switch a[data-lang]');
-
-    function updateNav() {
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.dataset.page === state.page);
-      });
-      langLinks.forEach(link => {
-        link.classList.toggle('active', link.dataset.lang === state.lang);
-      });
-    }
-
-    function updateLabels() {
-      const labels = pageLabels[state.lang];
-      navLinks.forEach(link => {
-        link.textContent = labels[link.dataset.page];
-      });
-      document.querySelector('footer p').innerHTML = footerText[state.lang];
-      document.documentElement.lang = state.lang;
-    }
-
-    async function loadPage(page) {
-      state.page = page;
-      updateNav();
-      updateLabels();
-
-      contentEl.innerHTML = '<p style="text-align:center;padding:3rem;">Loading...</p>';
-
-      try {
-        const res = await fetch(`src/${state.lang}/${page}.md`);
-        if (!res.ok) throw new Error('Failed to load content');
-        const md = await res.text();
-
-        contentEl.innerHTML = await marked.parse(md);
-        document.title = `Opencomp – ${pageLabels[state.lang][page]}`;
-      } catch (e) {
-        contentEl.innerHTML = `<p style="text-align:center;padding:3rem;">Error loading page: ${e.message}</p>`;
-      }
-
-      history.replaceState(null, '', `#${page}`);
-    }
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        loadPage(link.dataset.page);
-      });
-    });
-
-    langLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        state.lang = link.dataset.lang;
-        loadPage(state.page);
-      });
-    });
-
-    window.addEventListener('hashchange', () => {
-      const hash = location.hash.slice(1);
-      if (hash && ['home', 'about', 'articles'].includes(hash)) {
-        loadPage(hash);
-      }
-    });
-
-    const initialHash = location.hash.slice(1);
-    if (initialHash && ['home', 'about', 'articles'].includes(initialHash)) {
-      loadPage(initialHash);
-    } else {
-      loadPage('home');
-    }
-  </script>
 </body>
 </html>

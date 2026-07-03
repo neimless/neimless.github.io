@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articles | Opencomp</title>
+    <title>Artikkelit | Opencomp</title>
+    <link rel="alternate" hreflang="fi" href="https://opencomp.fi/articles.html">
+    <link rel="alternate" hreflang="en" href="https://opencomp.fi/en/articles.html">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -11,12 +13,18 @@
         <div class="container">
             <nav>
                 <a href="index.html" class="logo">
-                    <img src="images/logo-new-bg.png" alt="Opencomp Logo">
+                    <img src="images/logo-new-bg.png" alt="Opencomp-logo">
                 </a>
-                <div class="nav-links">
-                    <a href="index.html">Home</a>
-                    <a href="articles.html">Articles</a>
-                    <a href="cv.html">CV</a>
+                <div class="nav-right">
+                    <div class="nav-links">
+                        <a href="index.html">Etusivu</a>
+                        <a href="cv.html">CV</a>
+                    </div>
+                    <div class="lang-switch">
+                        <a href="articles.html" class="active" lang="fi">FI</a>
+                        <span>/</span>
+                        <a href="en/articles.html" lang="en">EN</a>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -25,28 +33,27 @@
     <main>
         <div class="container">
             <section>
-                <span class="label-sm">Knowledge Sharing</span>
-                <h1>Articles</h1>
-                <p class="body-lg">Insights on technology, engineering, and the future of digital solutions.</p>
-                
-                <div style="margin-top: var(--stack-lg); display: grid; gap: var(--stack-lg);">
-                    <article style="border: 1px solid var(--outline-variant); padding: var(--stack-md); border-radius: var(--rounded);">
-                        <span class="label-sm">April 2026</span>
-                        <h2 style="font-size: 24px; margin-bottom: var(--stack-sm);">Technology Trends in 2026</h2>
-                        <p style="color: var(--on-surface-variant);">Exploring the expansion of AI, advances in quantum computing, and the rise of sustainable technology.</p>
+                <span class="label-sm">Osaamisen jakaminen</span>
+                <h1>Artikkelit</h1>
+                <p class="body-lg">Näkemyksiä teknologiasta, ohjelmistokehityksestä ja digitaalisten ratkaisujen tulevaisuudesta.</p>
+
+                <div class="article-list">
+                    <article class="article-card">
+                        <span class="label-sm">Huhtikuu 2026</span>
+                        <h2>Teknologiatrendit 2026</h2>
+                        <p>Tekoälyn laajeneminen, kvanttilaskennan edistysaskeleet ja kestävän teknologian nousu.</p>
                     </article>
 
-                    <article style="border: 1px solid var(--outline-variant); padding: var(--stack-md); border-radius: var(--rounded);">
-                        <span class="label-sm">April 2026</span>
-                        <h2 style="font-size: 24px; margin-bottom: var(--stack-sm);">Open Source in Business</h2>
-                        <h3 style="display: none;">Innovation Through Collaboration</h3>
-                        <p style="color: var(--on-surface-variant);">How companies are leveraging open source to increase innovation and cost-effectiveness.</p>
+                    <article class="article-card">
+                        <span class="label-sm">Huhtikuu 2026</span>
+                        <h2>Avoin lähdekoodi liiketoiminnassa</h2>
+                        <p>Miten yritykset hyödyntävät avointa lähdekoodia innovaation ja kustannustehokkuuden kasvattamiseen.</p>
                     </article>
 
-                    <article style="border: 1px solid var(--outline-variant); padding: var(--stack-md); border-radius: var(--rounded);">
-                        <span class="label-sm">April 2026</span>
-                        <h2 style="font-size: 24px; margin-bottom: var(--stack-sm);">Best Practices in Web Development</h2>
-                        <p style="color: var(--on-surface-variant);">Focusing on performance, accessibility, and user experience in modern web engineering.</p>
+                    <article class="article-card">
+                        <span class="label-sm">Huhtikuu 2026</span>
+                        <h2>Web-kehityksen parhaat käytännöt</h2>
+                        <p>Suorituskyky, saavutettavuus ja käyttäjäkokemus modernissa web-kehityksessä.</p>
                     </article>
                 </div>
             </section>

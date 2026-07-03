@@ -353,8 +353,8 @@ h3 {
     to bottom,
     transparent,
     transparent 4px,
-    var(--outline-variant) 4px,
-    var(--outline-variant) 8px
+    rgba(60, 221, 199, 0.3) 4px,
+    rgba(60, 221, 199, 0.3) 10px
   );
   transform: translateX(-50%);
 }
@@ -378,12 +378,17 @@ h3 {
 
 .timeline-card {
   width: 44%; /* Slightly less than 50% to ensure a gap for the icon */
-  background: var(--surface-container);
+  background: var(--surface-container-low);
   border: 1px solid var(--outline-variant);
   border-radius: var(--rounded-lg);
-  padding: var(--stack-md);
+  padding: 32px;
   position: relative;
   z-index: 1;
+}
+
+.timeline-card.current {
+  border-color: rgba(45, 212, 191, 0.45);
+  box-shadow: 0 0 24px rgba(45, 212, 191, 0.08);
 }
 
 .timeline-item:nth-child(even) .timeline-card {
@@ -394,24 +399,39 @@ h3 {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
-  background: var(--background);
-  border: 2px solid var(--accent);
-  border-radius: var(--rounded-md);
+  width: 44px;
+  height: 44px;
+  background: var(--surface-container-lowest);
+  border: 1.5px solid var(--accent);
+  border-radius: var(--rounded-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
   color: var(--accent);
-  font-size: 18px;
+  box-shadow: 0 0 16px rgba(45, 212, 191, 0.2);
+}
+
+.timeline-icon svg {
+  width: 20px;
+  height: 20px;
 }
 
 .timeline-card-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+  gap: var(--stack-sm);
   margin-bottom: var(--stack-sm);
+}
+
+.timeline-card-header .label-sm {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--rounded-md);
 }
 
 .timeline-card h3 {
@@ -428,7 +448,7 @@ h3 {
 }
 
 .timeline-card .role {
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: var(--stack-sm);
   display: block;
 }
@@ -441,7 +461,7 @@ h3 {
 .timeline-card ul li {
   position: relative;
   padding-left: 20px;
-  margin-bottom: 4px;
+  margin-bottom: var(--stack-sm);
   color: var(--on-surface-variant);
   font-size: 14px;
 }
@@ -507,6 +527,7 @@ h3 {
   
   .timeline-card {
     width: 100%;
+    padding: var(--stack-md);
   }
   
   .timeline-icon {

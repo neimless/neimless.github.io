@@ -20,7 +20,7 @@ Static company website for OpenComp Oy, served at **opencomp.fi** via GitHub Pag
 
 - `index.html` — landing page (Finnish, primary)
 - `articles.html` — article listing (Finnish, primary). Currently hidden from navigation until real article content exists — restore the nav link on all pages when articles are published.
-- `cv.html` — professional timeline / CV (Finnish, primary)
+- `cv.html` — professional timeline / CV (Finnish, primary). Currently hidden from navigation and landing-page buttons — restore the links on all pages when the CV is ready to be shown.
 - `en/` — English versions of all pages (`en/index.html`, `en/articles.html`, `en/cv.html`)
 - `css/style.css` — single stylesheet for the whole site; design tokens as CSS variables in `:root`
 - `images/` — logos and images

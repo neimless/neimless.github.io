@@ -40,4 +40,4 @@ Static company website for OpenComp Oy, served at **opencomp.fi** via GitHub Pag
 - Shared header/nav markup is duplicated in every page (no templating) — when changing navigation, update **all** HTML pages consistently.
 - Keep styles in `css/style.css`; avoid inline styles in HTML.
 - Mobile breakpoint is `768px`; new components must be responsive.
-- Contact email is `contact@opencomp.fi`.
+- Contact email is `tero@opencomp.fi`.
